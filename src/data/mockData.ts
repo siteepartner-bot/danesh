@@ -1,4 +1,5 @@
 import { StudentProfile, Course, PaymentTransaction, SemesterGrade, AnnouncementItem, StudentRequest } from '../types';
+import { ASSETS } from '../assets';
 
 export const INITIAL_STUDENT_PROFILE: StudentProfile = {
   id: 'std_40112345',
@@ -20,7 +21,7 @@ export const INITIAL_STUDENT_PROFILE: StudentProfile = {
   tuitionBalance: 32500000, // 3,250,000 Tomans (32,500,000 Rials)
   fixedTuition: 18000000,   // 1,800,000 Tomans
   variableTuitionPerUnit: 1200000, // 120,000 Tomans per unit
-  avatarUrl: '/src/assets/images/student_avatar_profile_1790263116408.jpg',
+  avatarUrl: ASSETS.studentAvatar,
   status: 'اشتغال به تحصیل',
   supervisor: 'دکتر مهران کاظمی (عضو هیئت علمی گروه کامپیوتر)'
 };

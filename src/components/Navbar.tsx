@@ -22,13 +22,15 @@ interface NavbarProps {
   onTabChange: (tab: ViewTab) => void;
   student: StudentProfile;
   announcements: AnnouncementItem[];
+  onOpenStudentManager: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   onTabChange,
   student,
-  announcements
+  announcements,
+  onOpenStudentManager
 }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -138,6 +140,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Zone 3: Actions (Notifications, Student Profile Pill / Dropdown, Mobile Menu) */}
           <div className="flex items-center gap-2 sm:gap-3">
             
+            {/* Direct Data Management / Excel button */}
+            <button
+              onClick={onOpenStudentManager}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+              title="ثبت اطلاعات خودم یا بارگذاری فایل اکسل دانشجویان"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+              <span>ورود اطلاعات من / اکسل</span>
+            </button>
+
             {/* Notification Bell */}
             <div className="relative">
               <button
@@ -229,6 +241,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <span className="font-bold text-slate-800 font-mono tabular-nums">{toPersianDigits(student.totalGpa)}</span>
                     </div>
                   </div>
+
+                  <button
+                    onClick={() => {
+                      setShowUserDropdown(false);
+                      onOpenStudentManager();
+                    }}
+                    className="w-full text-right px-3 py-2 text-xs text-emerald-800 bg-emerald-50/70 hover:bg-emerald-100 rounded-lg font-bold cursor-pointer transition-colors flex items-center justify-between"
+                  >
+                    <span>ورود مشخصات من / آپلود اکسل</span>
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                  </button>
 
                   <button
                     onClick={() => {

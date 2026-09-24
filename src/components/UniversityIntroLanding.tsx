@@ -1,6 +1,7 @@
 import React from 'react';
 import { ViewTab } from '../types';
 import { toPersianDigits } from '../utils/formatters';
+import { ASSETS } from '../assets';
 import { 
   Building2, 
   GraduationCap, 
@@ -34,7 +35,7 @@ export const UniversityIntroLanding: React.FC<UniversityIntroLandingProps> = ({
       <div className="relative rounded-3xl overflow-hidden shadow-lg border border-slate-200">
         <div className="relative h-[360px] sm:h-[440px] w-full">
           <img
-            src="/src/assets/images/sepahan_campus_hero_1790263102879.jpg"
+            src={ASSETS.campusHero}
             alt="پردیس دانشگاهی موسسه آموزش عالی سپاهان"
             className="w-full h-full object-cover"
             onError={(e) => {

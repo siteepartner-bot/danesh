@@ -31,6 +31,7 @@ import { TranscriptView } from './components/TranscriptView';
 import { AnnouncementsAndRequests } from './components/AnnouncementsAndRequests';
 import { UniversityIntroLanding } from './components/UniversityIntroLanding';
 import { OnlinePaymentModal } from './components/OnlinePaymentModal';
+import { StudentDataManagementModal } from './components/StudentDataManagementModal';
 import { 
   Home, 
   BookOpenCheck, 
@@ -43,6 +44,7 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ViewTab>('dashboard');
+  const [studentManagerOpen, setStudentManagerOpen] = useState(false);
 
   // Persistent student profile
   const [student, setStudent] = useState<StudentProfile>(() => {
@@ -175,6 +177,7 @@ export default function App() {
         onTabChange={setActiveTab}
         student={student}
         announcements={ANNOUNCEMENTS}
+        onOpenStudentManager={() => setStudentManagerOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -262,6 +265,16 @@ export default function App() {
         studentName={`${student.firstName} ${student.lastName}`}
         studentCode={student.studentCode}
         onPaymentSuccess={handlePaymentSuccess}
+      />
+
+      {/* Student Profile & Excel Management Modal */}
+      <StudentDataManagementModal
+        isOpen={studentManagerOpen}
+        onClose={() => setStudentManagerOpen(false)}
+        currentStudent={student}
+        onUpdateStudentProfile={(updated) => {
+          setStudent(updated);
+        }}
       />
 
       {/* Mobile Bottom Navigation Bar for rapid thumb access */}
